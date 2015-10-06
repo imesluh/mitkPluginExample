@@ -27,6 +27,7 @@ See LICENSE.txt or http://www.mitk.org for details.
 
 //mitk image
 #include <mitkImage.h>
+#include <mitkPointSet.h>
 
 const std::string PickerExample::VIEW_ID = "org.mitk.views.pickerexample";
 
@@ -40,7 +41,25 @@ void PickerExample::CreateQtPartControl( QWidget *parent )
   // create GUI widgets from the Qt Designer's .ui file
   m_Controls.setupUi( parent );
   connect( m_Controls.buttonPerformImageProcessing, SIGNAL(clicked()), this, SLOT(DoImageProcessing()) );
+  connect(m_Controls.m_PBStopPicking, SIGNAL(clicked()), this, SLOT(StopPicking()));
+
+
+  //Add a predefined pointset and add it to the global data storage
+  mitk::PointSet::Pointer ps = mitk::PointSet::New();
+  mitk::DataNode::Pointer pointSetNode = mitk::DataNode::New();
+  pointSetNode->SetData(ps);
+  pointSetNode->SetProperty("layer", mitk::IntProperty::New(2));
+  GetDataStorage()->Add(pointSetNode);
+  // Create PointSetDataInteractor
+  m_interactor = mitk::PointSetDataInteractor::New();
+  m_interactor->LoadStateMachine("PointSet.xml");
+  m_interactor->SetEventConfig("PointSetConfig.xml");
+  m_interactor->SetDataNode(pointSetNode);
+  
 }
+
+
+
 
 void PickerExample::OnSelectionChanged( berry::IWorkbenchPart::Pointer /*source*/,
                                              const QList<mitk::DataNode::Pointer>& nodes )
@@ -58,8 +77,15 @@ void PickerExample::OnSelectionChanged( berry::IWorkbenchPart::Pointer /*source*
 
   m_Controls.labelWarning->setVisible( true );
   m_Controls.buttonPerformImageProcessing->setEnabled( false );
+
+
 }
 
+void PickerExample::StopPicking()
+{
+	if (m_interactor)
+		m_interactor->EnableInteraction(false);
+}
 
 void PickerExample::DoImageProcessing()
 {

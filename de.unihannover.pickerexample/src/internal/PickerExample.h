@@ -21,7 +21,9 @@ See LICENSE.txt or http://www.mitk.org for details.
 #include <berryISelectionListener.h>
 
 #include <QmitkAbstractView.h>
+#include <QmitkPointListViewWidget.h>
 
+#include <mitkPointSetDataInteractor.h>
 #include "ui_PickerExampleControls.h"
 
 
@@ -47,6 +49,7 @@ class PickerExample : public QmitkAbstractView
 
     /// \brief Called when the user clicks the GUI button
     void DoImageProcessing();
+	void StopPicking();
 
   protected:
 
@@ -58,7 +61,10 @@ class PickerExample : public QmitkAbstractView
     virtual void OnSelectionChanged( berry::IWorkbenchPart::Pointer source,
                                      const QList<mitk::DataNode::Pointer>& nodes ) override;
 
-    Ui::PickerExampleControls m_Controls;
+	Ui::PickerExampleControls m_Controls; 	
+	// Create PointSetDataInteractor
+	mitk::PointSetDataInteractor::Pointer m_interactor;
+	
 
 };
 

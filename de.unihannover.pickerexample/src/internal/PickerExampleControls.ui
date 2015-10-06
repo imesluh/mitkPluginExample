@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>222</width>
-    <height>161</height>
+    <height>480</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -37,6 +37,13 @@
      </property>
      <property name="text">
       <string>Do Something</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="m_PBStopPicking">
+     <property name="text">
+      <string>Confirm Picking/Stop Picking</string>
      </property>
     </widget>
    </item>
