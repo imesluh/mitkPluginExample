@@ -1,0 +1,16 @@
+/**
+  \defgroup de_unihannover_pickerexample de.unihannover.pickerexample
+  \ingroup MITKPlugins
+
+  \brief Describe your plugin here.
+
+*/
+
+/**
+  \defgroup de_unihannover_pickerexample_internal Internal
+  \ingroup de_unihannover_pickerexample
+
+  \brief This subcategory includes the internal classes of the de.unihannover.pickerexample plugin. Other
+  plugins must not rely on these classes. They contain implementation details and their interface
+  may change at any time. We mean it.
+*/

@@ -1,0 +1,5 @@
+set(Plugin-Name "Pickerexample")
+set(Plugin-Version "0.1")
+set(Plugin-Vendor "imes, LUH")
+set(Plugin-ContactAddress "")
+set(Require-Plugin org.mitk.gui.qt.common)
